@@ -1,0 +1,26 @@
+{
+  "name": "slack-ai-sentinel",
+  "version": "1.0.0",
+  "description": "Autonomous AI-Powered Incident Diagnostic & Telemetry Slack Agent with Gemini Vision and Multi-Platform SDKs",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "lucide-react": "^0.475.0",
+    "next": "15.2.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
+}
