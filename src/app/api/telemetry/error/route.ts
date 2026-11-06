@@ -119,6 +119,44 @@ export async function POST(req: NextRequest) {
       ],
     });
 
+    // Interactive Action Buttons
+    blocks.push({
+      type: 'actions',
+      elements: [
+        {
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            text: '🔄 Re-diagnose',
+            emoji: true,
+          },
+          style: 'primary',
+          action_id: 'trigger_rediasgnosis',
+          value: fingerprint,
+        },
+        {
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            text: '✅ Acknowledge',
+            emoji: true,
+          },
+          action_id: 'acknowledge_incident',
+          value: fingerprint,
+        },
+        {
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            text: '📋 Copy Fingerprint',
+            emoji: true,
+          },
+          action_id: 'copy_fingerprint',
+          value: fingerprint,
+        },
+      ],
+    });
+
     const fallbackText = `🚨 Incident Alert on ${route}: ${safeMessage.slice(0, 150)}`;
 
     const slackRes = await fetch('https://slack.com/api/chat.postMessage', {

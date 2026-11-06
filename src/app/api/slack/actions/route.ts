@@ -29,6 +29,32 @@ export async function POST(req: NextRequest) {
             text: `🔄 Re-diagnosis triggered by <@${payload.user?.id}>. Analyzing incident...`,
           }),
         });
+      } else if (action?.action_id === 'acknowledge_incident') {
+        await fetch('https://slack.com/api/chat.postMessage', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: JSON.stringify({
+            channel,
+            thread_ts: threadTs,
+            text: `✅ Incident acknowledged by <@${payload.user?.id}>. Investigation in progress.`,
+          }),
+        });
+      } else if (action?.action_id === 'copy_fingerprint') {
+        await fetch('https://slack.com/api/chat.postMessage', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: JSON.stringify({
+            channel,
+            thread_ts: threadTs,
+            text: `📋 Incident Fingerprint: \`${action.value || 'N/A'}\``,
+          }),
+        });
       }
     }
 
